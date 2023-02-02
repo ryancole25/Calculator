@@ -1,0 +1,81 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.calccontainer{
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    width: 400px;
+    border: solid 3px;
+    background-color: rgb(152, 150, 150);
+}
+
+button {
+    font-size: 40px;
+    font-family: serif;
+    border-color: white;
+}
+
+.screen {
+    padding-right: 4px;
+    font-size: 40px;
+}
+.display {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+    border: solid 2px;
+    margin: 5px;
+    background-color: rgb(243, 242, 242);
+    border-radius: 4px;
+    
+}
+
+.endrow {
+    display: flex;
+    flex: 1;
+    margin: 3px;
+}
+
+.double {
+    flex: 2;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 3px;
+}
+
+.circle {
+    flex: 1;
+    border-radius: 15px;
+    margin: 2px;
+}
+
+.row {
+    display: flex;
+    flex: 1;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.circle {
+    flex: 1;
+}
+
+.numbers {
+    background-color: rgb(47, 45, 45);
+    color: aliceblue;
+}
+
+.operators {
+    background-color: rgb(91, 91, 184);
+    color: aliceblue;
+}
+
+.functions {
+    color: aliceblue;
+    background-color: rgb(44, 130, 172);
+}
