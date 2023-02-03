@@ -1,10 +1,12 @@
 // TODO  
 // Handle rounding issues
 // Add keyboard support
+// Add hover over effect
 
 let number1 = '';
 let number2 = '';
 let operator = '';
+screenReset = false;
 const displayValue = document.querySelector('.screen');
 const numberButtons = document.querySelectorAll('.numbers');
 const operatorButtons = document.querySelectorAll('.operators');
@@ -14,14 +16,15 @@ const deleteButton = document.querySelector('.delete');
 const calculationValue = document.querySelector('.calculation');
 const negativeButton = document.querySelector('.negative');
 
+
 // Listen for the numbers and modify the display numbers if pressed
 numberButtons.forEach(button => button.addEventListener('click', function(){
-    appendScreen(button);
+    appendScreen(button.textContent);
 }));
 
 // Listen for the operation buttons (+, -, *, /) and get the specific operator
 operatorButtons.forEach(button => button.addEventListener("click", function(){
-    getOperator(button);
+    getOperator(button.textContent);
 }))
 
 // Listen for the equal button and perform the calculation on the two numbers
@@ -44,29 +47,42 @@ negativeButton.addEventListener('click', function(){
 })
 
 // Adds text to the display based on the number pressed
-function appendScreen(button){
+function appendScreen(number){
     // Makes it so you cannot add a leading 0
-    if (displayValue.textContent == '0'){
+    if (displayValue.textContent == '0' || screenReset){
         clearDisplay();
     }
-    else if (displayValue.textContent == number1){
-        clearDisplay();
+    
+    if (number == "."){
+        // Adds a leading zero if the first thing you press is "."
+        if (displayValue.textContent == ''){
+            displayValue.textContent += "0.";
+            return;
+        }
+        // Prohibits multiple '.' in a number
+        if (displayValue.textContent.includes('.')){
+            return;
+        }
     }
-    displayValue.textContent += button.textContent;
+    // Only allow up to 13 digits
+    if (displayValue.textContent.length < 13){
+        displayValue.textContent += number;
+    }
 }
 
 // Gets the operator based on the button pressed
-function getOperator(button){
-    // Need to add evaluate statement here for condition where operator is pressed and number1 and number2 exist
-    operator = button.textContent;
+function getOperator(input){
+    operator = input;
     number1 = displayValue.textContent;
-    calculationValue.textContent = `${number1} ${operator}`;
+    calculationValue.textContent = `${number1} ${operator}`
+    screenReset = true;
 }
 
 // Allows for new input without the leading 0
 function clearDisplay(){
     const displayValue = document.querySelector('.screen');
     displayValue.textContent = '';
+    screenReset = false;
 }
 
 // Totally clears number1, number2, the operator, and the screen
@@ -74,6 +90,7 @@ function clearEverything(){
     number1 = '';
     number2 = '';
     operator = '';
+    screenReset = false;
     displayValue.textContent = '0';
     calculationValue.textContent = '0';
 }
@@ -102,12 +119,13 @@ function evaluate(){
         number1 = displayValue.textContent;
         number2 = '';
         operator = '';
+        screenReset = true;
     }
 }
 
 // Mathematical operations
 function add(a, b){
-    return parseInt(a) + parseInt(b);
+    return parseFloat(a) + parseFloat(b);
 }
 
 function subtract(a,b){
@@ -116,6 +134,7 @@ function subtract(a,b){
 
 function multiply(a, b){
     return a * b;
+
 }
 
 function divide(a,b){
@@ -143,5 +162,51 @@ function operate(a, b, operator){
     }
     else if (operator = '+/-'){
         return negative(a);
+    }
+}
+
+// Keyboard Support
+
+window.addEventListener('keydown', function(e){
+    keyInput(e);
+});
+
+function keyInput(e){
+    if ((e.key >= 0 && e.key <= 9) || e.key == '.' ){
+        appendScreen(e.key);
+    }
+    else {
+        calcFunctionKey(e.keyCode);
+    }
+}
+
+function calcFunctionKey(keyCode){
+    // Enter key
+    if (keyCode == 13){
+        evaluate();
+    }
+    // Delete key
+    else if (keyCode == 8){
+        deleteFxn();
+    }
+    // Escape key
+    else if (keyCode == 27){
+        clearEverything();
+    }
+    // + key
+    else if (keyCode== 187){
+        getOperator('+');
+    }
+    // * key
+    else if (keyCode == 56){
+        getOperator('×');
+    }
+    // / key
+    else if (keyCode == 191){
+        getOperator('÷');
+    }
+    // - key
+    else if (keyCode == 189){
+        toNegative();
     }
 }

@@ -5,7 +5,9 @@
 
 .container {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
 }
 
 .calccontainer{
@@ -107,4 +109,20 @@ button {
 .negative {
     background-color: rgb(235, 175, 72);
     color: aliceblue;
+}
+
+footer {
+    font-family: helvetica;
+}
+
+.github {
+    width: 20px;
+}
+
+.footer {
+    font-family: Helvetica;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
