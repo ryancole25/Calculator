@@ -1,5 +1,4 @@
 // TODO  
-// Handle rounding issues
 
 let number1 = '';
 let number2 = '';
@@ -113,7 +112,14 @@ function evaluate(){
     number2 = displayValue.textContent;
     if (operator != '' && number2 != ''){
         calculationValue.textContent += ` ${number2} =`
-        displayValue.textContent = operate(number1, number2, operator);
+        let calculatedNum = operate(number1, number2, operator);
+        if (String(calculatedNum).length > 12 && String(calculatedNum).includes('.')){
+            calculatedNum = String(calculatedNum).slice(0,12);
+        }
+        if (String(calculatedNum).length > 12){
+            calculatedNum = "ERROR";
+        }
+        displayValue.textContent = calculatedNum;
         number1 = displayValue.textContent;
         number2 = '';
         operator = '';
@@ -127,11 +133,11 @@ function add(a, b){
 }
 
 function subtract(a,b){
-    return a - b;
+    return parseFloat(a) - parseFloat(b);
 }
 
 function multiply(a, b){
-    return a * b;
+    return parseFloat(a) * parseFloat(b);
 
 }
 
@@ -140,7 +146,7 @@ function divide(a,b){
         return "ERROR";
     }
     else{
-        return a / b;
+        return parseFloat(a) / parseFloat(b);
     }
 }
 
