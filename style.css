@@ -11,6 +11,7 @@
     width: 400px;
     border: solid 3px;
     background-color: rgb(152, 150, 150);
+    border-radius: 20px;
 }
 
 button {
@@ -71,7 +72,12 @@ button {
 }
 
 .operators {
-    background-color: rgb(91, 91, 184);
+    background-color: rgb(235, 175, 72);
+    color: aliceblue;
+}
+
+.equals {
+    background-color: rgb(235, 175, 72);
     color: aliceblue;
 }
 
