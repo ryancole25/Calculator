@@ -3,6 +3,10 @@
     src: url(Inter-VariableFont_slnt\,wght.ttf);
 }
 
+body {
+    background-color: aliceblue;
+}
+
 .container {
     display: flex;
     align-items: center;
@@ -23,7 +27,9 @@
 
 button {
     font-size: 40px;
-    font-family: serif;
+    font-family: inter;
+    color: white;
+    border: solid 2px;
     border-color: white;
 }
 
@@ -84,31 +90,29 @@ button {
 
 .numbers {
     background-color: rgb(47, 45, 45);
-    color: aliceblue;
     font-family: inter;
 }
 
-.operators {
-    background-color: rgb(235, 175, 72);
-    color: aliceblue;
-    font-family: inter;
-}
-
-.equals {
-    background-color: rgb(235, 175, 72);
-    color: aliceblue;
-    font-family: inter;
+.numbers:hover {
+    background-color: rgb(67, 65, 65);
 }
 
 .functions {
-    color: aliceblue;
     background-color: rgb(44, 130, 172);
     font-family: inter;
 }
 
-.negative {
-    background-color: rgb(235, 175, 72);
-    color: aliceblue;
+.functions:hover {
+    background-color: rgb(87, 155, 186);
+}
+
+.red {
+    background-color: rgb(126, 41, 41);
+    font-family: inter;
+}
+
+.red:hover {
+    background-color: rgb(144, 73, 73);
 }
 
 footer {
@@ -117,6 +121,7 @@ footer {
 
 .github {
     width: 20px;
+    background-color: aliceblue;
 }
 
 .footer {

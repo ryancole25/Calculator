@@ -1,7 +1,5 @@
 // TODO  
 // Handle rounding issues
-// Add keyboard support
-// Add hover over effect
 
 let number1 = '';
 let number2 = '';
@@ -165,7 +163,8 @@ function operate(a, b, operator){
     }
 }
 
-// Keyboard Support
+
+// Keyboard Support //
 
 window.addEventListener('keydown', function(e){
     keyInput(e);
