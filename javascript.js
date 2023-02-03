@@ -1,8 +1,5 @@
-// TODO 
-// Add the +/- button function to handle negative numbers 
-// Add a little message above displaying the calculation just performed
+// TODO  
 // Handle rounding issues
-// Fix issue if I keep hitting the zero
 // Add keyboard support
 
 let number1 = '';
@@ -14,6 +11,8 @@ const operatorButtons = document.querySelectorAll('.operators');
 const equalButton = document.querySelector('.equals'); 
 const clearButton = document.querySelector('.clear'); 
 const deleteButton = document.querySelector('.delete');
+const calculationValue = document.querySelector('.calculation');
+const negativeButton = document.querySelector('.negative');
 
 // Listen for the numbers and modify the display numbers if pressed
 numberButtons.forEach(button => button.addEventListener('click', function(){
@@ -40,6 +39,10 @@ deleteButton.addEventListener('click', function(){
     deleteFxn();
 })
 
+negativeButton.addEventListener('click', function(){
+    toNegative();
+})
+
 // Adds text to the display based on the number pressed
 function appendScreen(button){
     // Makes it so you cannot add a leading 0
@@ -57,6 +60,7 @@ function getOperator(button){
     // Need to add evaluate statement here for condition where operator is pressed and number1 and number2 exist
     operator = button.textContent;
     number1 = displayValue.textContent;
+    calculationValue.textContent = `${number1} ${operator}`;
 }
 
 // Allows for new input without the leading 0
@@ -71,6 +75,7 @@ function clearEverything(){
     number2 = '';
     operator = '';
     displayValue.textContent = '0';
+    calculationValue.textContent = '0';
 }
 
 // Deletes only the last char of the string (gives a zero if you deleted the only digit)
@@ -83,12 +88,21 @@ function deleteFxn(){
     }
 }
 
+// Adds a negative sign to the front if positive, or removes it if negative
+function toNegative(){
+    displayValue.textContent = `${-1 * parseInt(displayValue.textContent)}`;
+}
+
 // Takes the two numbers and performs the calculation based on the operator
 function evaluate(){
     number2 = displayValue.textContent;
-    displayValue.textContent = operate(number1, number2, operator);
-    number1 = displayValue.textContent;
-    number2 = '';
+    if (operator != '' && number2 != ''){
+        calculationValue.textContent += ` ${number2} =`
+        displayValue.textContent = operate(number1, number2, operator);
+        number1 = displayValue.textContent;
+        number2 = '';
+        operator = '';
+    }
 }
 
 // Mathematical operations
@@ -106,7 +120,7 @@ function multiply(a, b){
 
 function divide(a,b){
     if (b == 0){
-        return "NO NO NO";
+        return "ERROR";
     }
     else{
         return a / b;
@@ -121,10 +135,10 @@ function operate(a, b, operator){
     else if (operator == '-'){
         return subtract(a, b);
     }
-    else if (operator == 'x'){
+    else if (operator == '×'){
         return multiply(a, b);
     }
-    else if (operator = '/'){
+    else if (operator = '÷'){
         return divide(a,b);
     }
     else if (operator = '+/-'){

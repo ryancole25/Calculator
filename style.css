@@ -1,3 +1,8 @@
+@font-face {
+    font-family: inter;
+    src: url(Inter-VariableFont_slnt\,wght.ttf);
+}
+
 .container {
     display: flex;
     justify-content: center;
@@ -10,7 +15,7 @@
     height: 600px;
     width: 400px;
     border: solid 3px;
-    background-color: rgb(152, 150, 150);
+    background-color: rgb(203, 200, 200);
     border-radius: 20px;
 }
 
@@ -20,20 +25,29 @@ button {
     border-color: white;
 }
 
-.screen {
-    padding-right: 4px;
-    font-size: 40px;
+.calculation {
+    font-size: 20px;
+    padding-right: 10px;
+    padding-top: 10px;
+    font-family: Helvetica;
 }
+
+.screen {
+    padding-right: 10px;
+    font-size: 40px;
+    font-family: inter;
+}
+
 .display {
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex: 1;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
     border: solid 2px;
     margin: 5px;
     background-color: rgb(243, 242, 242);
-    border-radius: 4px;
-    
+    border-radius: 10px;
+    height: 120px;
 }
 
 .endrow {
@@ -69,19 +83,28 @@ button {
 .numbers {
     background-color: rgb(47, 45, 45);
     color: aliceblue;
+    font-family: inter;
 }
 
 .operators {
     background-color: rgb(235, 175, 72);
     color: aliceblue;
+    font-family: inter;
 }
 
 .equals {
     background-color: rgb(235, 175, 72);
     color: aliceblue;
+    font-family: inter;
 }
 
 .functions {
     color: aliceblue;
     background-color: rgb(44, 130, 172);
+    font-family: inter;
+}
+
+.negative {
+    background-color: rgb(235, 175, 72);
+    color: aliceblue;
 }
